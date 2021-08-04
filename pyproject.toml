@@ -1,0 +1,49 @@
+[tool.briefcase]
+project_name = "VataProductivityProject"
+bundle = "com.example"
+version = "0.0.1"
+url = "https://example.com/vataproductivity"
+license = "BSD license"
+author = 'Nicolai Sandmann'
+author_email = "Nicolai.Sandmann@gmx.net"
+
+[tool.briefcase.app.vataproductivity]
+formal_name = "VataProductivity"
+description = "Productivity app for dynamic minds."
+icon = "src/vataproductivity/resources/vataproductivity"
+sources = ['src/vataproductivity']
+requires = []
+
+
+[tool.briefcase.app.vataproductivity.macOS]
+requires = [
+    'toga-cocoa>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.vataproductivity.linux]
+requires = [
+    'toga-gtk>=0.3.0.dev20',
+]
+system_requires = [
+    'libgirepository1.0-dev',
+    'libcairo2-dev',
+    'libpango1.0-dev',
+    'libwebkitgtk-3.0-0',
+    'gir1.2-webkit-3.0',
+]
+
+[tool.briefcase.app.vataproductivity.windows]
+requires = [
+    'toga-winforms>=0.3.0.dev20',
+]
+
+# Mobile deployments
+[tool.briefcase.app.vataproductivity.iOS]
+requires = [
+    'toga-iOS>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.vataproductivity.android]
+requires = [
+    'toga-android>=0.3.0.dev20',
+]
