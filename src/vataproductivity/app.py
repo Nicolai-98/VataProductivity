@@ -4,22 +4,38 @@ TODO field to add new tasks
 TODO show current task with timer
 TODO next button to go to next task (better drop down)
 TODO Overview with tasks + time spent
+TODO Setup DB on startup if not already set up
 """
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
+import os
+import sqlite3
 
 
 class VataProductivity(toga.App):
 
     def save_activity(self, widget):
-        print("Hello, ", self.name_input.value)
+        name = self.name_input.value
+        print("Activity name: "+name)
+        package_dir = os.path.abspath(os.path.dirname(__file__))
+        print("Package dir: " +package_dir)
+        db_dir = os.path.join(package_dir, 'task.db')
+        print("Db dir: " +db_dir)
+        conn = sqlite3.connect(db_dir)
+        c = conn.cursor()
+        c.execute("INSERT OR IGNORE INTO tasks VALUES ('{0}', 0)".format(name))
+        c.execute("SELECT * FROM tasks where name='{0}'".format(name))
+        conn.commit()
+        print("Activity stored in db {0}: ".format(c.fetchone()))
+        conn.close()
+        
 
     def startup(self):
         main_box = toga.Box(style=Pack(direction=COLUMN))
 
         name_label = toga.Label(
-            'Your name:',
+            'Activity name:',
             style=Pack(padding=(0, 5))
         )
         self.name_input = toga.TextInput(style=Pack(flex=1))
@@ -29,7 +45,7 @@ class VataProductivity(toga.App):
         name_box.add(self.name_input)
 
         button = toga.Button(
-            'Say Hello!',
+            'Add new activity',
             on_press=self.save_activity,
             style=Pack(padding=5)
         )

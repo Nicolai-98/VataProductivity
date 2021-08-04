@@ -7,6 +7,15 @@ consider** `becoming a financial member of BeeWare`_.
 
 Productivity app for dynamic minds.
 
+SETUP on windows
+1. Setup your venv. 
+	- py -m venv beeware-venv
+	- beeware-venv\Scripts\activate.bat
+2. Install required packages from requirements.txt to your venv.
+	- pip install -r requirements.txt
+3. Run (Go to the folder above the src folder)
+	- briefcase dev
+
 .. _`Briefcase`: https://github.com/beeware/briefcase
 .. _`The BeeWare Project`: https://beeware.org/
 .. _`becoming a financial member of BeeWare`: https://beeware.org/contributing/membership
