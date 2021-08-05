@@ -5,7 +5,14 @@ VataProductivity
 `The BeeWare Project`_. **If you want to see more tools like Briefcase, please
 consider** `becoming a financial member of BeeWare`_.
 
+
 Productivity app for dynamic minds.
+Current workflow (just messing around):
+    Add activities by using the add activites button.
+    Show the activites stored in the db by clicking the show activities button.
+    Select an activity to track your time by clicking on it
+    Click the Update and save button to update the time of the current activity with the tracked value.
+
 
 SETUP on windows
 1. Setup your venv. 

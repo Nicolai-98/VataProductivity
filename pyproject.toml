@@ -9,7 +9,7 @@ author_email = "Nicolai.Sandmann@gmx.net"
 
 [tool.briefcase.app.vataproductivity]
 formal_name = "VataProductivity"
-description = "Productivity app for dynamic minds."
+description = "Cross platform productivity app"
 icon = "src/vataproductivity/resources/vataproductivity"
 sources = ['src/vataproductivity']
 requires = []
