@@ -38,18 +38,17 @@ class VataProductivity(toga.App):
         conn = sqlite3.connect(db_dir)
         c = conn.cursor()
         c.execute("SELECT * FROM tasks")
-        print("Activities fetched: {0}".format(c.fetchall()))
-        self.activity_label.text = "{0}".format(c.fetchall())
+        data = c.fetchall()
+        print("Activities fetched: {0}".format(data))
+        for row in data:
+            self.activity_table.data.append(row[0], row[1])
         conn.close()
         
 
     def startup(self):
         main_box = toga.Box(style=Pack(direction=COLUMN))
         
-        self.activity_label = toga.Label(
-            'Activities name:',
-            style=Pack(padding=(0, 5))
-        )
+        self.activity_table = toga.Table(['Name', 'Time spent'], style=Pack(padding=(0, 5)))
 
         name_label = toga.Label(
             'Activity name:',
@@ -76,7 +75,7 @@ class VataProductivity(toga.App):
         main_box.add(name_box)
         main_box.add(add_activity_button)
         main_box.add(get_activities_button)
-        main_box.add(self.activity_label)
+        main_box.add(self.activity_table)
 
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
