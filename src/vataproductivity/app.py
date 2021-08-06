@@ -108,9 +108,12 @@ class VataProductivity(toga.App):
             ['Name', 'Time spent'],
             missing_value = 'Not available',
             on_select=self.set_active,
-            style=Pack(padding=5)
+            style=Pack(padding=5),
+            data=[('sample', 'data'), ('sample', 'data'), ('sample', 'data'), ('sample', 'data'), ('sample', 'data'), ('sample', 'data')]
             )
-        self.activity_table.MIN_HEIGHT=250
+        
+        activity_table_box = toga.Box(style=Pack(direction=COLUMN, padding=(5)))
+        activity_table_box.add(self.activity_table)
         
         get_activities_button = toga.Button(
             'See all activities',
@@ -125,14 +128,14 @@ class VataProductivity(toga.App):
         )
         
         info_label = toga.Label(
-            'Please select an activity to track your time by clicking on it (Marked blue when active):',
+            'Please select an activity to track your time by clicking on it:',
             style=Pack(padding_top=3)
         )
         
         main_box.add(name_box)
         main_box.add(get_activities_button)
         main_box.add(info_label)
-        main_box.add(self.activity_table)
+        main_box.add(activity_table_box)
         main_box.add(save_activities_button)
 
         self.main_window = toga.MainWindow(title=self.formal_name)
